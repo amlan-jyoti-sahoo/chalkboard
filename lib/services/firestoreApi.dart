@@ -7,8 +7,11 @@ import 'package:chalkboard/model/user.dart';
 import 'package:chalkboard/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+
+import '../model/FirebaseFile.dart';
 
 class FirestoreApi {
   final db = FirebaseFirestore.instance;
@@ -81,6 +84,43 @@ class FirestoreApi {
     } on FirebaseException catch (e) {
       throw e;
     }
+  }
+  //--------------------------------------------------------------------------
+
+  // firestore api for file upload -------
+  static Future<void> postDocument(FirebaseFile file, String uid) async {
+    CollectionReference ref =
+        FirebaseFirestore.instance.collection('users/$uid/documents');
+    var jsonfile = file.toJson();
+    await ref.add(jsonfile);
+  }
+
+  static Stream<List<FirebaseFile>> getFileStream(String uid) {
+    CollectionReference reference =
+        FirebaseFirestore.instance.collection('users/$uid/documents');
+    final snapshots = reference.snapshots();
+    return snapshots.map((snapshot) => snapshot.docs
+        .map((snapshot) => FirebaseFile.fromJson(snapshot.data(), snapshot.id))
+        .toList());
+  }
+
+  static Future downloadFile(Reference ref) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final file = File('${dir.path}/${ref.name}');
+
+    await ref.writeToFile(file);
+  }
+
+  static Future<void> renameFile(String uid, FirebaseFile file) async {
+    DocumentReference ref =
+        FirebaseFirestore.instance.doc('users/$uid/documents/${file.fileId}');
+    await ref.update(file.toJson());
+  }
+
+  static Future<void> deleteFile(String uid, FirebaseFile file) async {
+    DocumentReference ref =
+        FirebaseFirestore.instance.doc('users/$uid/documents/${file.fileId}');
+    await ref.delete();
   }
   //--------------------------------------------------------------------------
 

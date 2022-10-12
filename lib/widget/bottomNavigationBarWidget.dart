@@ -1,3 +1,4 @@
+import 'package:chalkboard/screen/myDocuments.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -139,7 +140,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
               body: IndexedStack(
                 children: [
                   HomeScreen(),
-                  CartScreen(),
+                  MyDocuments(uid: auth.currentuser!.uid,),
                   MyDonationScreen(),
                   AccountScreen(),
                 ],
