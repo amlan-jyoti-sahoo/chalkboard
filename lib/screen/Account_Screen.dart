@@ -121,7 +121,7 @@ Widget buildHeader({
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(50),
                     child: Image.asset(
-                      "images/avatar.png",
+                      "assets/images/avatar.png",
                       height: 130.0,
                       width: 130.0,
                     ),

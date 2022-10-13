@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:chalkboard/model/address.dart';
-import 'package:chalkboard/model/cart.dart';
 import 'package:chalkboard/model/donation.dart';
 import 'package:chalkboard/model/user.dart';
 import 'package:chalkboard/services/auth.dart';
@@ -166,84 +165,4 @@ class FirestoreApi {
 
   //--------------------------------------------------------------------------
 
-  //firestore api for cart----------
-
-  Stream<List<Cart>> getMyCartItemsStream({required String userid}) {
-    CollectionReference reference = db.collection('users/$userid/cart');
-    final snapshots = reference.snapshots();
-    return snapshots.map((snapshot) => snapshot.docs
-        .map((snapshot) => Cart.fromJson(snapshot.data(), snapshot.id))
-        .toList());
-  }
-
-  Future<void> addToCart(
-      {required String userid,
-      required Cart newCartItem,
-      required BuildContext context}) async {
-    CollectionReference ref = db.collection('users/$userid/cart');
-    DocumentReference donationRef =
-        db.doc('Donations/${newCartItem.donatonid}');
-    return db.runTransaction((transaction) async {
-      final cartSnapshot =
-          await ref.where('donationId', isEqualTo: newCartItem.donatonid).get();
-      if (cartSnapshot.size == 0) {
-        final user = Provider.of<User?>(context, listen: false);
-        transaction.set(ref.doc(), newCartItem.toJson());
-        DocumentReference userref = db.doc('users/${userid}');
-        transaction
-            .update(userref, {'cart item count': user!.cartItemCount + 1});
-      } else {
-        final donationSnapshot = await transaction.get(donationRef);
-        Donation donation =
-            Donation.fromJson(donationSnapshot.data(), donationSnapshot.id);
-        Cart cartItem =
-            Cart.fromJson(cartSnapshot.docs[0].data(), cartSnapshot.docs[0].id);
-        if (donation.remainingQuantity > cartItem.count) {
-          DocumentReference ref =
-              db.doc('users/$userid/cart/${cartSnapshot.docs[0].id}');
-          Cart cartitem = Cart.fromJson(
-              cartSnapshot.docs[0].data(), cartSnapshot.docs[0].id);
-          transaction.update(ref, {'count': cartitem.count + 1});
-        } else {
-          throw Exception();
-        }
-      }
-    });
-  }
-
-  Future<void> incrementCount(int cartid, String userId) async {
-    final ref = db.doc('users/$userId/cart/$cartid');
-    return db.runTransaction((transaction) async {
-      DocumentSnapshot snapshot = await ref.get();
-      Cart cart = Cart.fromJson(snapshot.data(), snapshot.id);
-      if ((cart.count + 1) <= cart.item.remainingQuantity) {
-        int newCount = cart.count + 1;
-        transaction.update(ref, {'count': newCount});
-      } else {
-        throw Exception('does not have enough item to add');
-      }
-    });
-  }
-
-  Future<void> decrementCount(Cart cart, String userId) async {
-    final ref = db.doc('users/$userId/cart/${cart.cartItemId}');
-    await ref.update({'count': cart.count - 1});
-  }
-
-  Future<void> removeCartItem(
-      Cart cart, String userId, BuildContext context) async {
-    final ref = db.doc('users/$userId/cart/${cart.cartItemId}');
-    final user = Provider.of<User?>(context, listen: false);
-    DocumentReference userDoc = db.doc('users/${userId}');
-    await ref.delete();
-    userDoc.update({'cart item count': user!.cartItemCount - 1});
-  }
-
-  Future<void> removeAllCartItem(String userId) async {
-    CollectionReference ref = db.collection('users/$userId/cart');
-    var snapshots = await ref.get();
-    for (var doc in snapshots.docs) {
-      await doc.reference.delete();
-    }
-  }
 }

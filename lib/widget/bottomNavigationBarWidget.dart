@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/user.dart';
-import '../screen/cart_screen.dart';
 import '../screen/home_screen.dart';
 import '../screen/my_donation_screen.dart';
 import '../screen/Account_Screen.dart';
@@ -49,7 +48,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   void initState() {
     super.initState();
     if (widget.newuser) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).push(MaterialPageRoute(
           builder: (_) {
             return SignUpScreen(isThirdpartySignup: true);

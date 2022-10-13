@@ -130,7 +130,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   ? ClipRRect(
                 borderRadius: BorderRadius.circular(50),
                 child: Image.asset(
-                  "images/avatar.png",
+                  "assets/images/avatar.png",
                   height: 130.0,
                   width: 130.0,
                 ),
@@ -146,7 +146,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   bottom: 0,
                   right: -5,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.circle,
                       size: 35,
                       color: Colors.blue,
@@ -157,7 +157,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   bottom: 0,
                   right: -6,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                       size: 25,
                       color: Colors.white,
@@ -165,7 +165,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                     onPressed: onClicked,
                   )),
             ]),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

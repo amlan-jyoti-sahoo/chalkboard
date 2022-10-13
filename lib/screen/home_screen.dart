@@ -1,7 +1,6 @@
 import 'package:chalkboard/model/user.dart';
 import 'package:chalkboard/services/auth.dart';
 import 'package:chalkboard/widget/badge.dart';
-import 'package:chalkboard/widget/item_grid.dart';
 import 'package:chalkboard/widget/navigationDrawerWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
