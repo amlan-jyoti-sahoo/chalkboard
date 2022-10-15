@@ -35,7 +35,7 @@ class PaymentScreenState extends State<PaymentScreen> {
     int amountToPay = int.parse(amount.text) * 100;
 
     var options = {
-      'key': 'rzp_live_V0smS5P2ZzpzQd',
+      'key': 'rzp_test_TLizkUXChD8GM3',
       'amount': "$amountToPay",
       'name': name.text,
       'description': description.text,
