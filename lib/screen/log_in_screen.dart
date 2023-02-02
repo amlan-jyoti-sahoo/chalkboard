@@ -48,7 +48,8 @@ class _LogInPageState extends State<LogInPage> {
       });
     }
   }
-
+   
+   
   void signInWithGoogle() async {
     final auth = Provider.of<Auth>(context, listen: false);
     try {
