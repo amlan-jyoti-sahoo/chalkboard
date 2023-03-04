@@ -8,6 +8,10 @@ import '../services/auth.dart';
 import '../services/cacheManager.dart';
 import '../widget/navigationDrawerWidget.dart';
 
+import 'dart:async';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class AccountScreen extends StatefulWidget {
   const AccountScreen({
     Key? key,
@@ -18,6 +22,8 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+
+  Future<void>? _launched;
   // final padding = EdgeInsets.symmetric(horizontal: 20);
   final List locale = [
     {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
@@ -64,8 +70,37 @@ updatelanguage(Locale locale){
         });
   }
 
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+
+  Future<void> _launchInWebViewOrVC(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.inAppWebView,
+      webViewConfiguration: const WebViewConfiguration(
+          headers: <String, String>{'my_header_key': 'my_header_value'}),
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
+  Widget _launchStatus(BuildContext context, AsyncSnapshot<void> snapshot) {
+    if (snapshot.hasError) {
+      return Text('Error: ${snapshot.error}');
+    } else {
+      return const Text('');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Uri toLaunch =
+        Uri(scheme: 'https', host: 'amlan2002.github.io', path: 'chalkboard_website/');
     return Scaffold(
       body: SafeArea(
         child: ListView(
@@ -128,7 +163,11 @@ updatelanguage(Locale locale){
                   icon: Icon(Icons.share),
                 ),
                 ButtonCard(
-                  press: () {},
+                  press: () {
+                    setState(() {
+                  _launched = _launchInBrowser(toLaunch);
+                });
+                  },
                   title: 'About Us'.tr,
                   icon: Icon(Icons.developer_board),
                 ),
