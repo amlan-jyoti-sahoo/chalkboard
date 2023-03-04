@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HealthData extends StatefulWidget {
   const HealthData({Key? key}) : super(key: key);
@@ -41,8 +42,8 @@ class _HealthDataState extends State<HealthData> {
           /* *start*  Blood Group input section */
           Row(
             children: [
-              const Text(
-                "Session Time:  ",
+               Text(
+                "Session Time".tr,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class _HealthDataState extends State<HealthData> {
                 width: 110.0,
                 height: 40.0,
                 child: Text(
-                  'Students:',
+                  'Students'.tr,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -102,7 +103,7 @@ class _HealthDataState extends State<HealthData> {
                 child: TextField(
                   controller: heightController,
                   decoration: InputDecoration(
-                    labelText: 'enter the NO.',
+                    labelText: 'enter the NO.'.tr,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -130,7 +131,7 @@ class _HealthDataState extends State<HealthData> {
                 width: 90.0,
                 height: 40.0,
                 child: Text(
-                  'Location:',
+                  'Location'.tr,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -143,7 +144,7 @@ class _HealthDataState extends State<HealthData> {
                 child: TextField(
                   controller: weightController,
                   decoration: InputDecoration(
-                    labelText: 'street Name.',
+                    labelText: 'street Name'.tr,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
@@ -167,14 +168,14 @@ class _HealthDataState extends State<HealthData> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Supply the study kits: ',
+               Text(
+                'Supply the study kits'.tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Column(
                 children: <Widget>[
                   ListTile(
-                    title: const Text('Yes'),
+                    title:  Text('Yes'.tr),
                     leading: Radio<RecentlyDiagnosed>(
                       value: RecentlyDiagnosed.Yes,
                       groupValue: _recentlyDiagnosed,
@@ -186,7 +187,7 @@ class _HealthDataState extends State<HealthData> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('No'),
+                    title:  Text('No'.tr),
                     leading: Radio<RecentlyDiagnosed>(
                       value: RecentlyDiagnosed.No,
                       groupValue: _recentlyDiagnosed,
@@ -207,7 +208,7 @@ class _HealthDataState extends State<HealthData> {
                   maxLines: 4,
                   controller: recentlyDiagnosedController,
                   decoration: InputDecoration(
-                    labelText: 'Mention in Details:',
+                    labelText: 'Mention in Details'.tr,
                     border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(Icons.close),
@@ -227,14 +228,14 @@ class _HealthDataState extends State<HealthData> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Any Extra Fun activity Conducted: ',
+               Text(
+                'Any Extra Fun activity Conducted'.tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Column(
                 children: <Widget>[
                   ListTile(
-                    title: const Text('Yes'),
+                    title: Text('Yes'.tr),
                     leading: Radio<ChronicDisease>(
                       value: ChronicDisease.Yes,
                       groupValue: _chronicDisease,
@@ -246,7 +247,7 @@ class _HealthDataState extends State<HealthData> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('No'),
+                    title: Text('No'.tr),
                     leading: Radio<ChronicDisease>(
                       value: ChronicDisease.No,
                       groupValue: _chronicDisease,
@@ -267,7 +268,7 @@ class _HealthDataState extends State<HealthData> {
                   maxLines: 4,
                   controller: chronicDiseaseController,
                   decoration: InputDecoration(
-                    labelText: 'Mention the Details:',
+                    labelText: 'Mention in Details'.tr,
                     border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(Icons.close),
@@ -287,14 +288,14 @@ class _HealthDataState extends State<HealthData> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const Text(
-                'Do the Children are Statisfied: ',
+               Text(
+                'Do the Children are Statisfied'.tr,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               Column(
                 children: <Widget>[
                   ListTile(
-                    title: const Text('Yes'),
+                    title: Text('Yes'.tr),
                     leading: Radio<EyeSightProblem>(
                       value: EyeSightProblem.Yes,
                       groupValue: _eyeSightProblemDisease,
@@ -306,7 +307,7 @@ class _HealthDataState extends State<HealthData> {
                     ),
                   ),
                   ListTile(
-                    title: const Text('No'),
+                    title:  Text('No'.tr),
                     leading: Radio<EyeSightProblem>(
                       value: EyeSightProblem.No,
                       groupValue: _eyeSightProblemDisease,
@@ -327,7 +328,7 @@ class _HealthDataState extends State<HealthData> {
                   maxLines: 4,
                   controller: eyeSightProblemController,
                   decoration: InputDecoration(
-                    labelText: 'Mention in Deatils:',
+                    labelText: 'Mention in Details'.tr,
                     border: OutlineInputBorder(),
                     suffixIcon: IconButton(
                       icon: Icon(Icons.close),

@@ -1,6 +1,7 @@
 import 'package:chalkboard/screen/add_image.dart';
 import 'package:chalkboard/screen/myDocuments.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UploadImage extends StatefulWidget {
   const UploadImage({Key? key, required this.uid}) : super(key: key);
@@ -15,7 +16,7 @@ class _UploadImageState extends State<UploadImage> {
     return Column(
       children: [
         ElevatedButton(
-          child: const Text('upload your data'),
+          child: Text('upload your data'.tr),
           onPressed: () {
             showModalBottomSheet(
                 context: context,
@@ -29,7 +30,7 @@ class _UploadImageState extends State<UploadImage> {
           },
         ),
         ElevatedButton(
-          child: const Text('My Uploaded Documents'),
+          child: Text('My Uploaded Documents'.tr),
           onPressed: () {
             showModalBottomSheet(
                 context: context,

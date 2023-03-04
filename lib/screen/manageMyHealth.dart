@@ -2,6 +2,7 @@ import 'package:chalkboard/widget/healthdata.dart';
 import 'package:chalkboard/widget/uploadImage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
 
 class ManageMyHealth extends StatefulWidget {
   const ManageMyHealth({Key? key, required this.uid}) : super(key: key);
@@ -19,7 +20,7 @@ class _ManageMyHealthState extends State<ManageMyHealth> {
         Step(
           state: _activeStepIndex <= 0 ? StepState.editing : StepState.complete,
           isActive: _activeStepIndex >= 0,
-          title: const Text('Session Data'),
+          title: Text('Session Data'.tr),
           content: const Center(
             child: HealthData(),
           ),
@@ -28,7 +29,7 @@ class _ManageMyHealthState extends State<ManageMyHealth> {
             state:
                 _activeStepIndex <= 1 ? StepState.editing : StepState.complete,
             isActive: _activeStepIndex >= 1,
-            title: const Text('Upload'),
+            title: Text('Upload'.tr),
             content: Center(
               child: UploadImage(
                 uid: widget.uid,
@@ -37,9 +38,9 @@ class _ManageMyHealthState extends State<ManageMyHealth> {
         Step(
             state: StepState.editing,
             isActive: _activeStepIndex >= 2,
-            title: const Text('Confirm'),
-            content: const Center(
-              child: Text('Confirm'),
+            title: Text('Confirm'.tr),
+            content:  Center(
+              child: Text('Confirm'.tr),
             )),
       ];
 
@@ -49,7 +50,7 @@ class _ManageMyHealthState extends State<ManageMyHealth> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Daily Session Report"),
+        title: Text("Daily Session Reports".tr),
       ),
       body: Stepper(
         type: StepperType.horizontal,
@@ -61,7 +62,7 @@ class _ManageMyHealthState extends State<ManageMyHealth> {
           }
           if(_activeStepIndex == 2){
             Fluttertoast.showToast(
-        msg: "Session Report Uploaded Succesfully!!",
+        msg: "Session Report Uploaded Succesfully!!".tr,
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,

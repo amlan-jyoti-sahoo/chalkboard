@@ -4,6 +4,7 @@ import 'package:chalkboard/screen/Account_Screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -60,12 +61,12 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   Divider(color: Colors.white70),
                   const SizedBox(height: 24),
                   buildMenuItem(
-                    text: 'My Donations',
+                    text: 'My Donations'.tr,
                     icon: Icons.shopping_bag,
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Volunteer',
+                    text: 'VOLUNTEER'.tr,
                     icon: Icons.shopping_cart,
                     // onClicked: () {
                     //   final auth = Provider.of<Auth>(context, listen: false);
@@ -77,7 +78,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Updates',
+                    text: 'Updates'.tr,
                     icon: Icons.update,
                     onClicked: () {},
                   ),
@@ -85,19 +86,19 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   Divider(color: Colors.white70),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'Notifications',
+                    text: 'Notifications'.tr,
                     icon: Icons.notifications_outlined,
                     onClicked: () => selectedItem(context, 5),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
-                    text: 'About Us',
+                    text: 'About Us'.tr,
                     icon: Icons.developer_board,
                     onClicked: () => selectedItem(context, 5),
                   ),
                   const SizedBox(height: 24),
                   buildMenuItem(
-                    text: 'Logout',
+                    text: 'Logout'.tr,
                     icon: Icons.account_tree_outlined,
                     onClicked: () {
                       AppCacheManager.documentCacheManager.emptyCache();
@@ -170,7 +171,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  name,
+                  name.tr,
                   style: TextStyle(fontSize: 20, color: Colors.white),
                 ),
                 const SizedBox(height: 4),

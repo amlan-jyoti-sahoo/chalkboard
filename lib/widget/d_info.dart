@@ -29,11 +29,11 @@ class DInfo {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context, false),
-              child: Text(textNo),
+              child: Text(textNo.tr),
             ),
             TextButton(
               onPressed: () => Navigator.pop(context, true),
-              child: Text(textYes),
+              child: Text(textYes.tr),
             ),
           ],
         );

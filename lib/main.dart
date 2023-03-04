@@ -1,9 +1,11 @@
 import 'package:chalkboard/screen/splash_screen.dart';
+import 'package:chalkboard/services/LocaleString.dart';
 import 'package:chalkboard/services/auth.dart';
 import 'package:chalkboard/services/firestoreApi.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
 
 
 import 'package:firebase_core/firebase_core.dart';
@@ -55,7 +57,9 @@ class MyApp extends StatelessWidget {
         Provider<Auth>(create: (_) => Auth()),
         Provider<FirestoreApi>(create: (_) => FirestoreApi()),
       ],
-      child: MaterialApp(
+      child: GetMaterialApp(
+        translations: LocalString(),
+        locale: Locale('en','US'),
         debugShowCheckedModeBanner: false,
         title: 'Chalkboard',
         theme: ThemeData(

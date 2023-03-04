@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../model/user.dart';
@@ -18,6 +19,50 @@ class AccountScreen extends StatefulWidget {
 
 class _AccountScreenState extends State<AccountScreen> {
   // final padding = EdgeInsets.symmetric(horizontal: 20);
+  final List locale = [
+    {'name': 'ENGLISH', 'locale': Locale('en', 'US')},
+    {'name': 'ହିନ୍ଦୀ', 'locale': Locale('hi', 'IN')},
+    {'name': 'ଓଡିଆ', 'locale': Locale('od', 'IN')},
+    {'name': 'தமிழ்', 'locale': Locale('tam', 'IN')},
+    {'name': 'తెలుగు', 'locale': Locale('tel', 'IN')},
+  ];
+
+updatelanguage(Locale locale){
+  Get.back();
+  Get.updateLocale(locale); 
+}
+  builddialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (builder) {
+          return AlertDialog(
+            title: Text('Choose a language'.tr),
+            content: Container(
+              width: double.maxFinite,
+              child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            updatelanguage(locale[index]['locale']);
+                          },
+                          child: Text(
+                            locale[index]['name'],
+                          ),
+                        ));
+                  },
+                  separatorBuilder: (context, index) {
+                    return Divider(
+                      color: Colors.blue,
+                    );
+                  },
+                  itemCount: locale.length),
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,37 +97,44 @@ class _AccountScreenState extends State<AccountScreen> {
                 ),
                 ButtonCard(
                   press: () {},
-                  title: 'My Profile',
+                  title: 'My Profile'.tr,
                   icon: Icon(Icons.account_circle),
                 ),
                 ButtonCard(
+                  press: () {
+                    builddialog(context);
+                  },
+                  title: 'Change Language'.tr,
+                  icon: Icon(Icons.language),
+                ),
+                ButtonCard(
                   press: () {},
-                  title: 'My  Cart',
+                  title: 'My  Cart'.tr,
                   icon: Icon(Icons.shopping_cart),
                 ),
                 ButtonCard(
                   press: () {},
-                  title: 'My Donations',
+                  title: 'My Donations'.tr,
                   icon: Icon(Icons.shopping_bag),
                 ),
                 ButtonCard(
                   press: () {},
-                  title: 'Terms and conditions',
+                  title: 'Terms and conditions'.tr,
                   icon: Icon(Icons.note),
                 ),
                 ButtonCard(
                   press: () {},
-                  title: 'Share with Friends',
+                  title: 'Share with Friends'.tr,
                   icon: Icon(Icons.share),
                 ),
                 ButtonCard(
                   press: () {},
-                  title: 'About Us',
+                  title: 'About Us'.tr,
                   icon: Icon(Icons.developer_board),
                 ),
                 ButtonCard(
                   press: () {},
-                  title: 'Exit',
+                  title: 'Exit'.tr,
                   icon: Icon(Icons.exit_to_app),
                 ),
                 ButtonCard(
@@ -92,7 +144,7 @@ class _AccountScreenState extends State<AccountScreen> {
                     final auth = Provider.of<Auth>(context, listen: false);
                     auth.signOut();
                   },
-                  title: 'Sign Out',
+                  title: 'Sign Out'.tr,
                   icon: Icon(Icons.logout),
                 ),
               ],
@@ -161,7 +213,7 @@ Widget buildHeader({
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                name,
+                name.tr,
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.black,

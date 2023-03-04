@@ -6,6 +6,7 @@ import 'package:chalkboard/screen/view_image.dart';
 import 'package:chalkboard/services/cacheManager.dart';
 import 'package:chalkboard/services/firestoreApi.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../widget/alret_dialog.dart';
 import 'add_image.dart';
@@ -54,7 +55,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                               padding: EdgeInsets.all(20),
                               child: Column(
                                 children: [
-                                  Text("Volunteers Near You",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                                  Text("Volunteers Near You".tr,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
                                   SizedBox(height:20),
                                   Image.asset('assets/images/map.jpeg'),
                                 ],
@@ -72,7 +73,7 @@ class _MyDocumentsState extends State<MyDocuments> {
                     SizedBox(
                       height: 30,
                     ),
-                    Center(child: Text("Upload todays Report",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
+                    Center(child: Text("Upload todays Report".tr,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),)),
                     SizedBox(
                       height: 30,
                     ),
@@ -194,7 +195,7 @@ class _MyDocumentsState extends State<MyDocuments> {
           ),
         ),
         title: TextButton(
-          child: Text("Daily Session Reports",style: TextStyle(fontSize: 30,color:Colors.white),),
+          child: Text("Daily Session Reports".tr,style: TextStyle(fontSize: 30,color:Colors.white),),
           onPressed: () {
             Navigator.push(
                                   context,

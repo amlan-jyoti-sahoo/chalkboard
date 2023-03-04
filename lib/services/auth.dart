@@ -17,7 +17,7 @@ class Auth {
       String email, String password) async {
     final userCredential = await FirebaseAuth.instance.signInWithCredential(
         EmailAuthProvider.credential(email: email, password: password));
-    currentUserCredential = userCredential;
+    currentUserCredential = userCredential;  
     return userCredential.user;
   }
 

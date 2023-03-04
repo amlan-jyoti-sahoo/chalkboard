@@ -1,5 +1,6 @@
 import 'package:chalkboard/widget/d_info.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentScreen extends StatefulWidget {
@@ -52,7 +53,7 @@ class PaymentScreenState extends State<PaymentScreen> {
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print("Payment Sucessfull");
     Navigator.pop(context);
-    DInfo.dialogSuccess(context,'Payment Success');
+    DInfo.dialogSuccess(context,'Payment Success'.tr);
     DInfo.closeDialog(context,durationBeforeClose: const Duration(seconds: 1));
     print(
         "${response.orderId} \n${response.paymentId} \n${response.signature}");
@@ -61,7 +62,7 @@ class PaymentScreenState extends State<PaymentScreen> {
   void _handlePaymentError(PaymentFailureResponse response) {
     print("Payemt Failed");
     Navigator.pop(context);
-    DInfo.dialogError(context,'Payment Failed');
+    DInfo.dialogError(context,'Payment Failed'.tr);
     DInfo.closeDialog(context,durationBeforeClose: const Duration(seconds: 1));
     print("${response.code}\n${response.message}");
   }
@@ -69,7 +70,7 @@ class PaymentScreenState extends State<PaymentScreen> {
   void _handleExternalWallet(ExternalWalletResponse response) {
     print("Payment Failed");
     Navigator.pop(context);
-    DInfo.dialogError(context,'Payment Failed');
+    DInfo.dialogError(context,'Payment Failed'.tr);
     DInfo.closeDialog(context,durationBeforeClose: const Duration(seconds: 1));
   }
 
@@ -79,7 +80,7 @@ class PaymentScreenState extends State<PaymentScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Payments"),
+        title: Text("Payments".tr),
       ),
       body: Container(
         height: size.height,
@@ -87,14 +88,14 @@ class PaymentScreenState extends State<PaymentScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              textField(size, "Name", false, name),
-              textField(size, "Phone no.", false, phoneNo),
-              textField(size, "Email", false, email),
-              textField(size, "Description", false, description),
-              textField(size, "amount", true, amount),
+              textField(size, "Name".tr, false, name),
+              textField(size, "Phone no.".tr, false, phoneNo),
+              textField(size, "Email".tr, false, email),
+              textField(size, "Description".tr, false, description),
+              textField(size, "amount".tr, true, amount),
               ElevatedButton(
                 onPressed: launchRazorPay,
-                child: Text("Pay Now"),
+                child: Text("Pay Now".tr),
               ),
             ],
           ),
@@ -114,7 +115,7 @@ class PaymentScreenState extends State<PaymentScreen> {
           controller: controller,
           keyboardType: isNumerical ? TextInputType.number : null,
           decoration: InputDecoration(
-            hintText: text,
+            hintText: text.tr,
             border: OutlineInputBorder(),
           ),
         ),

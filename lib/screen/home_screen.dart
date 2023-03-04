@@ -3,6 +3,7 @@ import 'package:chalkboard/services/auth.dart';
 import 'package:chalkboard/widget/badge.dart';
 import 'package:chalkboard/widget/navigationDrawerWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -123,12 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SizedBox(height:10),
           Text(
-            'Weekly Top Volunteers',
+            'Weekly Top Volunteers'.tr,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontWeight: FontWeight.bold,
             fontSize: 25),
           ),
+          
           SingleChildScrollView(
             child: Container(
               padding: EdgeInsets.all(30),
@@ -144,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         radius: 28,
                         backgroundImage: NetworkImage(volunteer.urlAvatar),
                       ),
-                      title: Text(volunteer.username),
+                      title: Text(volunteer.username.tr),
                       subtitle: Text(volunteer.email),
                       trailing: const Icon(Icons.arrow_forward),
                       onTap: () {

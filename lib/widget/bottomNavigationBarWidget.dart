@@ -1,5 +1,6 @@
 import 'package:chalkboard/screen/myDocuments.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../model/user.dart';
@@ -97,7 +98,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
             child: Scaffold(
               drawer: NavigationDrawerWidget(),
               appBar: AppBar(
-                title: Text(title),
+                title: Text(title.tr),
                 // leading: IconButton(
                 //   icon: Icon(Icons.menu),
                 //   onPressed: () {
@@ -122,7 +123,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                   TextButton(
                       onPressed: () => {_logout(context)},
                       child: Text(
-                        'Logout',
+                        'logout'.tr,
                         style: TextStyle(color: Colors.white),
                       ))
                 ],

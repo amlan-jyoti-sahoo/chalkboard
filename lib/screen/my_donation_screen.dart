@@ -2,6 +2,7 @@ import 'package:chalkboard/screen/VolunteerProfile.dart';
 import 'package:chalkboard/screen/home_screen.dart';
 import 'package:chalkboard/screen/payment_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyDonationScreen extends StatefulWidget {
   const MyDonationScreen({Key? key}) : super(key: key);
@@ -30,7 +31,7 @@ class _MyDonationScreenState extends State<MyDonationScreen> {
             child: Padding(
               padding: const EdgeInsets.all(18.0),
               child: ElevatedButton(
-                child: const Text('Donate Now'),
+                child: Text('Donate Now'.tr),
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -41,7 +42,7 @@ class _MyDonationScreenState extends State<MyDonationScreen> {
             ),
           ),
           Text(
-            'Previous Donations',
+            'Previous Donations'.tr,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontWeight: FontWeight.bold,
